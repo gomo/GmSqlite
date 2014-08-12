@@ -13,7 +13,12 @@ class GmSqliteTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        GmSqlite.addDatabase(
+            "main",
+            path: NSBundle.mainBundle().pathForResource("test", ofType: "sqlite3")
+        )
+        var db:GmSqlite = GmSqlite.database("main")
+        db.query("DELETE FROM shop");
     }
     
     override func tearDown() {
@@ -22,8 +27,10 @@ class GmSqliteTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        var db:GmSqlite = GmSqlite.database("main")
+        var id:Int = db.insert("shop", params: ["name":"aaa"])
+        
+        db.fetchAll("SELECT * FROM shop")
     }
     
     func testPerformanceExample() {

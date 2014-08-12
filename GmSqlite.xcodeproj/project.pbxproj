@@ -12,6 +12,14 @@
 		2C6E8B90199A70C700779107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8B8E199A70C700779107 /* Main.storyboard */; };
 		2C6E8B92199A70C700779107 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8B91199A70C700779107 /* Images.xcassets */; };
 		2C6E8B9E199A70C700779107 /* GmSqliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E8B9D199A70C700779107 /* GmSqliteTests.swift */; };
+		2C6E8BAA199A712100779107 /* GmSqlite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E8BA9199A712100779107 /* GmSqlite.swift */; };
+		2C6E8BAB199A712100779107 /* GmSqlite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E8BA9199A712100779107 /* GmSqlite.swift */; };
+		2C6E8BAF199A712D00779107 /* create_table.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8BAD199A712D00779107 /* create_table.sql */; };
+		2C6E8BB0199A712D00779107 /* create_table.sql in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8BAD199A712D00779107 /* create_table.sql */; };
+		2C6E8BB1199A712D00779107 /* test.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8BAE199A712D00779107 /* test.sqlite3 */; };
+		2C6E8BB2199A712D00779107 /* test.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C6E8BAE199A712D00779107 /* test.sqlite3 */; };
+		2C6E8BB4199A717C00779107 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6E8BB3199A717C00779107 /* libsqlite3.0.dylib */; };
+		2C6E8BB5199A718700779107 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6E8BB3199A717C00779107 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +42,11 @@
 		2C6E8B97199A70C700779107 /* GmSqliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GmSqliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6E8B9C199A70C700779107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6E8B9D199A70C700779107 /* GmSqliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmSqliteTests.swift; sourceTree = "<group>"; };
+		2C6E8BA8199A712100779107 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		2C6E8BA9199A712100779107 /* GmSqlite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmSqlite.swift; sourceTree = "<group>"; };
+		2C6E8BAD199A712D00779107 /* create_table.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = create_table.sql; sourceTree = "<group>"; };
+		2C6E8BAE199A712D00779107 /* test.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.sqlite3; sourceTree = "<group>"; };
+		2C6E8BB3199A717C00779107 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E8BB4199A717C00779107 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E8BB5199A718700779107 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +72,9 @@
 		2C6E8B7C199A70C700779107 = {
 			isa = PBXGroup;
 			children = (
+				2C6E8BB3199A717C00779107 /* libsqlite3.0.dylib */,
+				2C6E8BAC199A712D00779107 /* sample */,
+				2C6E8BA7199A712100779107 /* library */,
 				2C6E8B87199A70C700779107 /* GmSqlite */,
 				2C6E8B9A199A70C700779107 /* GmSqliteTests */,
 				2C6E8B86199A70C700779107 /* Products */,
@@ -107,6 +125,26 @@
 				2C6E8B9C199A70C700779107 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C6E8BA7199A712100779107 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				2C6E8BA8199A712100779107 /* BridgingHeader.h */,
+				2C6E8BA9199A712100779107 /* GmSqlite.swift */,
+			);
+			name = library;
+			path = GmSqlite/library;
+			sourceTree = "<group>";
+		};
+		2C6E8BAC199A712D00779107 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				2C6E8BAD199A712D00779107 /* create_table.sql */,
+				2C6E8BAE199A712D00779107 /* test.sqlite3 */,
+			);
+			name = sample;
+			path = GmSqlite/sample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,8 +227,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E8BAF199A712D00779107 /* create_table.sql in Resources */,
 				2C6E8B90199A70C700779107 /* Main.storyboard in Resources */,
 				2C6E8B92199A70C700779107 /* Images.xcassets in Resources */,
+				2C6E8BB1199A712D00779107 /* test.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E8BB0199A712D00779107 /* create_table.sql in Resources */,
+				2C6E8BB2199A712D00779107 /* test.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E8BAA199A712100779107 /* GmSqlite.swift in Sources */,
 				2C6E8B8D199A70C700779107 /* ViewController.swift in Sources */,
 				2C6E8B8B199A70C700779107 /* AppDelegate.swift in Sources */,
 			);
@@ -218,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C6E8B9E199A70C700779107 /* GmSqliteTests.swift in Sources */,
+				2C6E8BAB199A712100779107 /* GmSqlite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +374,7 @@
 				INFOPLIST_FILE = GmSqlite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = GmSqlite/library/BridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -341,6 +386,7 @@
 				INFOPLIST_FILE = GmSqlite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = GmSqlite/library/BridgingHeader.h;
 			};
 			name = Release;
 		};
@@ -359,6 +405,7 @@
 				INFOPLIST_FILE = GmSqliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = GmSqlite/library/BridgingHeader.h;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -374,6 +421,7 @@
 				INFOPLIST_FILE = GmSqliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = GmSqlite/library/BridgingHeader.h;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
