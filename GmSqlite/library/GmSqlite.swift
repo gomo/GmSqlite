@@ -8,15 +8,15 @@
 
 import Foundation
 var databases:[String: GmSqlite] = [:];
-class GmSqlite{
-    class Column{
-        var name:String
-        var type:CInt
-        init(name: String, type:CInt){
-            self.name = name
-            self.type = type
-        }
-    }
+public class GmSqlite:NSObject{
+//    class Column{
+//        var name:String
+//        var type:CInt
+//        init(name: String, type:CInt){
+//            self.name = name
+//            self.type = type
+//        }
+//    }
     var db: COpaquePointer = nil
     var dispatch_queue: dispatch_queue_t
     let DISPATCH_QUEUE_LABLE = "GmSqliteQueue"
@@ -67,10 +67,11 @@ class GmSqlite{
         return Int(id)
     }
     
-    public func fetchAll(sql: String){
+    public func fetchAll(sql: String) ->  [[String:GmSqliteValue]]{
         var result:CInt = 0
         var cSql = sql.cStringUsingEncoding(NSUTF8StringEncoding)
         var stmt:COpaquePointer = nil
+        var rows = [[String:GmSqliteValue]]()
         
         result = sqlite3_prepare_v2(self.db, cSql!, -1, &stmt, nil)
         if result != SQLITE_OK {
@@ -79,32 +80,36 @@ class GmSqlite{
         }
         
         result = sqlite3_step(stmt)
-        var colums = [Column]();
+        var colums = [String]();
         while result == SQLITE_ROW {
             let columnCount:CInt = sqlite3_column_count(stmt)
             if colums.count == 0 {
                 for index in 0..<columnCount {
-                    colums.append(Column(
-                        name: String.fromCString(sqlite3_column_name(stmt, index))!,
-                        type: sqlite3_column_type(stmt, index)
-                    ))
+                    colums.append(String.fromCString(sqlite3_column_name(stmt, index))!)
+//                    colums.append(Column(
+//                        name: String.fromCString(sqlite3_column_name(stmt, index))!,
+//                        type: sqlite3_column_type(stmt, index)
+//                    ))
                 }
             }
             
+            var row = [String:GmSqliteValue]()
             for index in 0..<columnCount {
-                let column = colums[Int(index)];
-                if column.type == SQLITE_TEXT {
-                    println("TEXT:" + column.name)
-                } else if column.type == SQLITE_INTEGER {
-                    println("INT:" + column.name)
-                }
-//                println(colums[Int(index)].name)
-//                println(colums[Int(index)].type)
+                let columnName = colums[Int(index)];
+                let data = sqlite3_column_blob(stmt, index)
+                let size = sqlite3_column_bytes(stmt, index)
+                let val = NSData(bytes:data, length: Int(size))
+                let value:GmSqliteValue = GmSqliteValue(value:val)
+                row[columnName] = value;
             }
+            
+            rows.append(row)
             
             result = sqlite3_step(stmt)
         }
         sqlite3_finalize(stmt)
+        
+        return rows;
     }
     
     public func query(sql: String) -> Int{

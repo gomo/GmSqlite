@@ -30,7 +30,8 @@ class GmSqliteTests: XCTestCase {
         var db:GmSqlite = GmSqlite.database("main")
         var id:Int = db.insert("shop", params: ["name":"aaa"])
         
-        db.fetchAll("SELECT * FROM shop")
+        let rows = db.fetchAll("SELECT * FROM shop")
+        println(rows)
     }
     
     func testPerformanceExample() {
