@@ -13,7 +13,21 @@ public class GmSqliteValue:NSObject {
         self.value = value
     }
     
-    override public var description: String{
+    public func string() -> String{
         return NSString(data:value, encoding:NSUTF8StringEncoding)
+    }
+    
+    public func int() -> Int{
+        let strbuf:String = string()
+        let intbuf:Int? = strbuf.toInt()
+        if intbuf == nil {
+            NSException(name: "GmSqliteException", reason: "'\(strbuf)' can't convert to integer.", userInfo: nil).raise()
+        }
+        
+        return intbuf!
+    }
+    
+    override public var description: String{
+        return string();
     }
 }

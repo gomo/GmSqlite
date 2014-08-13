@@ -28,10 +28,17 @@ class GmSqliteTests: XCTestCase {
     
     func testExample() {
         var db:GmSqlite = GmSqlite.database("main")
-        var id:Int = db.insert("shop", params: ["name":"aaa"])
+        var id:Int = db.insert("shop", params: ["id":"123", "name":"aaa"])
         
         let rows = db.fetchAll("SELECT * FROM shop")
         println(rows)
+        
+        let colId:GmSqliteValue = rows[0]["id"]!;
+        XCTAssertEqual(123, colId.int())
+        
+        let colName:GmSqliteValue = rows[0]["name"]!;
+        XCTAssertEqual("aaa", colName.string())
+        
     }
     
     func testPerformanceExample() {
