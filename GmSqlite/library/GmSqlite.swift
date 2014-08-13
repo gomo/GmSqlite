@@ -10,7 +10,7 @@ import Foundation
 var databases:[String: GmSqlite] = [:];
 public class GmSqlite:NSObject{
     var db: COpaquePointer = nil
-    var dispatch_queue: dispatch_queue_t
+    let dispatch_queue: dispatch_queue_t
     let DISPATCH_QUEUE_LABLE = "GmSqliteQueue"
     
     class func addDatabase(name:String, path:String){
@@ -18,7 +18,7 @@ public class GmSqlite:NSObject{
     }
     
     class func database(name:String) -> GmSqlite{
-        var sqlite:GmSqlite? = databases[name]
+        let sqlite:GmSqlite? = databases[name]
         
         if !sqlite{
             NSException(name: "GmSQLiteException", reason: "Missing database for name " + name, userInfo: nil).raise()
@@ -61,7 +61,7 @@ public class GmSqlite:NSObject{
     
     public func fetchAll(sql: String) ->  [[String:GmSqliteValue]]{
         var result:CInt = 0
-        var cSql = sql.cStringUsingEncoding(NSUTF8StringEncoding)
+        let cSql = sql.cStringUsingEncoding(NSUTF8StringEncoding)
         var stmt:COpaquePointer = nil
         var rows = [[String:GmSqliteValue]]()
         
@@ -101,7 +101,7 @@ public class GmSqlite:NSObject{
     
     public func query(sql: String) -> Int{
         var result:CInt = 0
-        var cSql = sql.cStringUsingEncoding(NSUTF8StringEncoding)
+        let cSql = sql.cStringUsingEncoding(NSUTF8StringEncoding)
         var stmt:COpaquePointer = nil
         
         //Prepare

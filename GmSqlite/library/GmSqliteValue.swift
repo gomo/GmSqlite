@@ -8,7 +8,7 @@
 
 import Foundation
 public class GmSqliteValue:NSObject {
-    private var value:NSData
+    private let value:NSData
     init(value:NSData){
         self.value = value
     }
