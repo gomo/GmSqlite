@@ -127,6 +127,6 @@ public class GmSqlite:NSObject{
     
     private func raiseLastException(){
         let buf = sqlite3_errmsg(db)
-        NSException(name: "GmSQLiteException", reason: NSString(CString:buf, encoding:NSUTF8StringEncoding), userInfo: nil).raise()
+        NSException(name: "GmSqliteException", reason: NSString(CString:buf, encoding:NSUTF8StringEncoding), userInfo: nil).raise()
     }
 }
