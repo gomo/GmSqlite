@@ -9,14 +9,6 @@
 import Foundation
 var databases:[String: GmSqlite] = [:];
 public class GmSqlite:NSObject{
-//    class Column{
-//        var name:String
-//        var type:CInt
-//        init(name: String, type:CInt){
-//            self.name = name
-//            self.type = type
-//        }
-//    }
     var db: COpaquePointer = nil
     var dispatch_queue: dispatch_queue_t
     let DISPATCH_QUEUE_LABLE = "GmSqliteQueue"
@@ -86,10 +78,6 @@ public class GmSqlite:NSObject{
             if colums.count == 0 {
                 for index in 0..<columnCount {
                     colums.append(String.fromCString(sqlite3_column_name(stmt, index))!)
-//                    colums.append(Column(
-//                        name: String.fromCString(sqlite3_column_name(stmt, index))!,
-//                        type: sqlite3_column_type(stmt, index)
-//                    ))
                 }
             }
             
@@ -98,8 +86,7 @@ public class GmSqlite:NSObject{
                 let columnName = colums[Int(index)];
                 let data = sqlite3_column_blob(stmt, index)
                 let size = sqlite3_column_bytes(stmt, index)
-                let val = NSData(bytes:data, length: Int(size))
-                let value:GmSqliteValue = GmSqliteValue(value:val)
+                let value:GmSqliteValue = GmSqliteValue(value:NSData(bytes:data, length: Int(size)))
                 row[columnName] = value;
             }
             
